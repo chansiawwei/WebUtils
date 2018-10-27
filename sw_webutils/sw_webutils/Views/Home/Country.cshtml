@@ -1,0 +1,68 @@
+﻿@model CountryData
+
+@{
+    ViewData["Title"] = "Country";
+}
+
+
+<form asp-action="Country" method="post" role="form">
+    <br />
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="CountryName" class="col-md-2 control-label"></label>
+        <div class="col-md-5">
+            <input asp-for="CountryName" class="form-control" />
+            <span asp-validation-for="CountryName" class="text-danger"></span>
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-5">
+            <input type="submit" class="btn btn-primary" value="Search Country Info" />
+        </div>
+    </div>
+
+</form>
+
+
+@if (@Model?.Capital != null)
+{
+
+    <br />
+    <br />
+    <hr />
+
+    <p>
+        <iframe width="600" height="450" frameborder="0" style="border:0"
+                src="https://www.google.com/maps/embed/v1/place?q=@Model?.CountryName&key=AIzaSyDRXiFKs4KA0-2PHFdOIKkrYLuwrDYPYYI
+
+
+     " allowfullscreen></iframe>
+    </p>
+
+    <ul class="list-group">
+        <li class="list-group-item">Country: @Model.CountryName</li>
+        <li class="list-group-item">Capital: @Model.Capital</li>
+        <li class="list-group-item">Area: @Model.Area</li>
+        <li class="list-group-item">Population: @Model.Population</li>
+        <li class="list-group-item">Currency: @Model.CurrencyCode</li>
+        <img src="@Model.FalgUrl" alt="@Model.CountryName" width="200px" height="200px" />
+    </ul>
+
+
+}
+else
+{
+    if (@Model?.CountryName != null)
+    {
+
+        <br />
+        <br />
+        <hr />
+        <div><h3>Please enter a valid country.</h3></div>
+
+    }
+}

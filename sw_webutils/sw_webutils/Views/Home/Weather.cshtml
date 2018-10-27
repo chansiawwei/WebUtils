@@ -1,0 +1,92 @@
+﻿@model WeatherData
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<form asp-action="Index" method="post" role="form">
+    <br />
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="City" class="col-md-2 control-label"></label>
+        <div class="col-md-5">
+            <input asp-for="City" class="form-control" />
+            <span asp-validation-for="City" class="text-danger"></span>
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-5">
+            <input type="submit" class="btn btn-primary" value="Search City Info" />
+        </div>
+    </div>
+
+</form>
+
+
+@if (@Model?.Text != null)
+{
+    <br />
+    <br />
+    <hr />
+    
+
+    <p>
+        <iframe width="600" height="450" frameborder="0" style="border:0"
+                src="https://www.google.com/maps/embed/v1/place?q=@Model?.City&key=AIzaSyDRXiFKs4KA0-2PHFdOIKkrYLuwrDYPYYI
+
+
+     " allowfullscreen></iframe>
+    </p>
+
+
+    <div>
+
+
+        <ul class="list-group">
+
+            <li class="list-group-item">Huminity:@Model?.Huminity</li>
+            <li class="list-group-item">Sunrise:@Model?.SunRise</li>
+            <li class="list-group-item">SunSet:@Model?.SunSet</li>
+            <li class="list-group-item">Weather:@Model?.Text</li>
+        </ul>
+    </div>
+
+
+
+    <ul class="list-group">
+        @foreach (var f in @Model.WeatherForecastDatas)
+        {
+
+            <li class="list-group-item">Date:@f.Date</li>
+            <li class="list-group-item">Day:@f.Day</li>
+            <li class="list-group-item">High:@f.High</li>
+            <li class="list-group-item">Low:@f.Low</li>
+            <li class="list-group-item"> Weather:@f.Text</li>
+
+
+            <br />
+
+        }
+
+
+    </ul>
+
+}
+
+@if (@Model?.Count == 0)
+{
+
+    <br />
+    <br />
+    <hr />
+    <div><h3>Please enter a valid city .</h3></div>
+
+
+}
+
+
