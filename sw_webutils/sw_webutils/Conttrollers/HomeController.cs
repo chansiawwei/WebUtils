@@ -42,7 +42,7 @@ namespace sw_webutils.Conttrollers
          // weather.ParseData();
             WeatherData data = weather.GetWebData();
               // data.Text = weatherData.Text;
-                return View("Index", data);
+                return View("Weather", data);
          }
 
           return View(weatherData);
@@ -71,6 +71,12 @@ namespace sw_webutils.Conttrollers
             }
            
             return View(countryData);
+        }
+
+        [HttpGet]
+        public IActionResult About()
+        {
+            return View();
         }
 
 
